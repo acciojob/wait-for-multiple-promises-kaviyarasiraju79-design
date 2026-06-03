@@ -17,28 +17,26 @@ const promises = [
   createPromise("Promise 3"),
 ];
 
-Promise.all(promises).then((results) => {
+const start = Date.now();
 
-  // remove loading row
+Promise.all(promises).then((results) => {
+  const totalTime = ((Date.now() - start) / 1000).toFixed(3);
+
   tbody.innerHTML = "";
 
-  // add promise rows
   results.forEach((res) => {
     const row = document.createElement("tr");
-
     row.innerHTML = `
       <td>${res.name}</td>
       <td>${res.time}</td>
     `;
-
     tbody.appendChild(row);
   });
 
-  // FIXED TOTAL (IMPORTANT)
   const totalRow = document.createElement("tr");
   totalRow.innerHTML = `
     <td>Total</td>
-    <td>Promise Completed</td>
+    <td>${totalTime}</td>
   `;
 
   tbody.appendChild(totalRow);
