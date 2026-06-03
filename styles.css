@@ -1,33 +1,9 @@
 /*  your css code here. If applicable */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
-  margin: 0;
   padding: 20px;
+  background-color: #f8f9fa;
 }
 
 table {
-  width: 60%;
-  margin: 50px auto;
   background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-thead {
-  background-color: #0d6efd;
-  color: white;
-}
-
-th, td {
-  text-align: center;
-  padding: 12px;
-}
-
-tbody tr:hover {
-  background-color: #f1f1f1;
-  transition: 0.3s;
-}
-
-td {
-  font-size: 16px;
 }

@@ -1,17 +1,15 @@
 //your JS code here. If required.
 const tbody = document.getElementById("output");
 
-// Show loading row initially
-tbody.innerHTML = `<tr><td colspan="2">Loading...</td></tr>`;
-
-// function to create a promise with random delay (1–3 sec)
+// helper function to create a promise with random delay (1–3 sec)
 function createPromise(name) {
-  const delay = Math.floor(Math.random() * 3) + 1;
-
   return new Promise((resolve) => {
+    const time = (Math.random() * 2 + 1).toFixed(3); // 1 to 3 sec
+    const delay = time * 1000;
+
     setTimeout(() => {
-      resolve({ name, time: delay });
-    }, delay * 1000);
+      resolve({ name, time: Number(time) });
+    }, delay);
   });
 }
 
@@ -25,17 +23,29 @@ const start = performance.now();
 Promise.all([p1, p2, p3]).then((results) => {
   const end = performance.now();
 
+  const totalTime = ((end - start) / 1000).toFixed(3);
+
+  // remove loading row
   tbody.innerHTML = "";
 
+  // add each promise result
   results.forEach((res) => {
     const row = document.createElement("tr");
+
     row.innerHTML = `
       <td>${res.name}</td>
       <td>${res.time}</td>
     `;
+
     tbody.appendChild(row);
   });
 
-  // optional: show total time (if needed in future requirement)
-  console.log(`Total time: ${(end - start) / 1000}s`);
+  // add total row
+  const totalRow = document.createElement("tr");
+  totalRow.innerHTML = `
+    <td>Total</td>
+    <td>${totalTime}</td>
+  `;
+
+  tbody.appendChild(totalRow);
 });
