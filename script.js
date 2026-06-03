@@ -26,18 +26,11 @@ Promise.all(promises).then((results) => {
 
   results.forEach((res) => {
     const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${res.name}</td>
-      <td>${res.time}</td>
-    `;
+    row.innerHTML = `<td>${res.name}</td><td>${res.time}</td>`;
     tbody.appendChild(row);
   });
 
   const totalRow = document.createElement("tr");
-  totalRow.innerHTML = `
-    <td>Total</td>
-    <td>${totalTime}</td>
-  `;
-
+  totalRow.innerHTML = `<td>Total</td><td>${totalTime}</td>`;
   tbody.appendChild(totalRow);
 });
