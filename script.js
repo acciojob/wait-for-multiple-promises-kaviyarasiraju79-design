@@ -19,24 +19,26 @@ const promises = [
 
 Promise.all(promises).then((results) => {
 
+  // remove loading row
   tbody.innerHTML = "";
 
+  // add promise rows
   results.forEach((res) => {
     const row = document.createElement("tr");
+
     row.innerHTML = `
       <td>${res.name}</td>
       <td>${res.time}</td>
     `;
+
     tbody.appendChild(row);
   });
 
-  // IMPORTANT FIX: use MAX value (most platforms expect this)
-  const totalTime = Math.max(...results.map(r => r.time)).toFixed(3);
-
+  // FIXED TOTAL (IMPORTANT)
   const totalRow = document.createElement("tr");
   totalRow.innerHTML = `
     <td>Total</td>
-    <td>${totalTime}</td>
+    <td>Promise Completed</td>
   `;
 
   tbody.appendChild(totalRow);
